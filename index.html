@@ -1,66 +1,106 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GOJO PAY - Diamond & NOKOS Termurah</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
-<style>body{font-family:'Outfit',sans-serif; background:#0a0a0f; color:white}</style>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>GOJO PAY V4 - ALL BEBAS + BANTUAN | TOKO Man V2</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Outfit,sans-serif}
+body{background:#f5f5f7;color:#111}
+header{background:#fff;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 1px 4px rgba(0,0,0,.08);position:sticky;top:0;z-index:10}
+.logo{font-weight:800;font-size:18px}.logo span{color:#7C3AED}
+.badge{background:#00C853;color:#fff;font-size:9px;padding:4px 8px;border-radius:20px;font-weight:800}
+.step{background:#fff;margin:12px;border-radius:12px;padding:14px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.step-title{font-weight:800;font-size:13px;margin-bottom:10px;display:flex;gap:6px;align-items:center}
+.step-title span{background:#7C3AED;color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px}
+.id-input{display:flex;gap:8px}.id-input input{flex:1;padding:10px;border:1px solid #ddd;border-radius:8px;outline:none}.id-input button{background:#7C3AED;color:#fff;border:none;padding:0 14px;border-radius:8px;font-weight:800}
+.custom-box{background:linear-gradient(135deg,#7C3AED,#A78BFA);border-radius:12px;padding:14px;color:#fff;margin-top:10px}
+.custom-box input{width:100%;padding:12px;border-radius:10px;border:none;text-align:center;font-size:18px;font-weight:800;margin:8px 0;outline:none;color:#111}
+.price-box{background:#fff;color:#00C853;font-weight:800;font-size:20px;text-align:center;padding:8px;border-radius:8px;margin:6px 0}
+.gem-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.gem-item{background:#fff;border:1px solid #e5e5e5;border-radius:10px;padding:10px;text-align:center;cursor:pointer;position:relative}
+.gem-item.best{border:2px solid #00C853;background:#f0fdf4}
+.gem-item b{font-size:12px;display:block}
+.harga{color:#7C3AED;font-weight:800;font-size:12px;margin-top:2px}
+.badge-mini{position:absolute;top:-6px;right:-6px;background:#00C853;color:#fff;font-size:7px;padding:2px 6px;border-radius:10px;font-weight:800}
+.faq{background:#f8f8ff;border:1px dashed #7C3AED;border-radius:10px;padding:10px;margin-top:8px}
+.faq b{font-size:12px;color:#7C3AED}
+.faq p{font-size:11px;margin:4px 0;opacity:.8}
+#qrModal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:99;padding:16px}#qrModal.active{display:flex}.qrbox{background:#fff;border-radius:16px;padding:16px;width:100%;max-width:360px;text-align:center}.qrbox img{width:100%;border-radius:8px;margin:8px 0}.btn{width:100%;padding:12px;border:none;border-radius:10px;background:#7C3AED;color:#fff;font-weight:800;margin-top:6px}.btn-green{background:#00C853}
+</style>
 </head>
 <body>
-<!-- HEADER -->
-<div class="bg-gradient-to-r from-purple-600 to-blue-600 p-4 sticky top-0 z-50">
-  <div class="max-w-6xl mx-auto flex justify-between items-center">
-    <h1 class="text-2xl font-black">⚡ GOJO PAY</h1>
-    <a href="https://wa.me/628xxxx" class="bg-white text-purple-600 px-4 py-1 rounded-full font-bold text-sm">WA ADMIN</a>
-  </div>
+<header><div class="logo">GOJO<span>PAY</span> TOKO Man V2</div><div class="badge">● QRIS AKTIF</div></header>
+
+<div style="text-align:center;padding:10px;font-weight:800">💎 ALL DIAMOND BEBAS 1-99999</div>
+
+<div class="step">
+<div class="step-title"><span>1</span> Masukkan ID MLBB</div>
+<div class="id-input"><input id="mlbbId" placeholder="ID (12345678)"><input id="serverId" placeholder="Server (1234)" style="max-width:90px"><button onclick="cekId()">CEK</button></div>
+<p id="hasilCek" style="font-size:11px;color:#00C853;margin-top:6px;display:none"></p>
+<div class="faq"><b>❓ Cara Lihat ID?</b><p>1. Buka MLBB > Klik Avatar > Liat ID di bawah Nickname contoh: 12345678 (1234) yang depan ID, yang belakang Server</p></div>
 </div>
 
-<!-- HERO -->
-<div class="max-w-6xl mx-auto px-4 py-10 text-center">
-  <div class="inline-block bg-purple-600/20 border border-purple-500 px-4 py-1 rounded-full text-purple-300 text-sm mb-4">🔥 TERPERCAYA 100% - PROSES KILAT</div>
-  <h2 class="text-4xl md:text-6xl font-black mb-4">DIAMOND GAME<br><span class="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">TERMURAH SE-INDONESIA</span></h2>
-  <p class="text-gray-400 mb-8">Melayani Mobile Legends, Free Fire, PUBG, NOKOS WA, Jasa Edit & Lainnya</p>
-  <div class="grid grid-cols-3 gap-3 max-w-2xl mx-auto mb-10">
-    <div class="bg-white/5 border border-white/10 p-3 rounded-2xl"><div class="text-2xl">⚡</div><div class="text-sm font-bold">Proses 1 Menit</div></div>
-    <div class="bg-white/5 border border-white/10 p-3 rounded-2xl"><div class="text-2xl">💎</div><div class="text-sm font-bold">Harga Reseller</div></div>
-    <div class="bg-white/5 border border-white/10 p-3 rounded-2xl"><div class="text-2xl">✅</div><div class="text-sm font-bold">Garansi 100%</div></div>
-  </div>
+<div class="step">
+<div class="step-title"><span>2</span> Pilih Diamond Bebas</div>
+<div class="custom-box">
+<div style="font-weight:800;text-align:center">💎 KETIK BEBAS MAU BERAPA DM?</div>
+<input type="number" id="customGem" placeholder="Contoh: 13, 99, 1000" oninput="hitung()">
+<div class="price-box" id="priceDisplay">Rp 0</div>
+<div style="font-size:10px;text-align:center;opacity:.9">Rate Rp 250/DM • Bebas 1 - 99999</div>
+<button class="btn" style="background:#fff;color:#7C3AED" onclick="buyCustom()">BELI CUSTOM BEBAS</button>
+</div>
+<div style="font-size:11px;font-weight:800;margin:12px 0 8px;opacity:.7">PAKET CEPAT:</div>
+<div class="gem-grid">
+<div class="gem-item" onclick="buy('5 DM')"><b>5 DM</b><div class="harga">Rp 2.000</div></div>
+<div class="gem-item" onclick="buy('11 DM')"><b>11 DM</b><div class="harga">Rp 4.000</div></div>
+<div class="gem-item" onclick="buy('14 DM')"><b>14 DM</b><div class="harga">Rp 5.000</div></div>
+<div class="gem-item" onclick="buy('86 DM')"><div class="badge-mini">TERLARIS</div><b>86 DM +7</b><div class="harga" style="color:#00C853">Rp 20.000</div></div>
+<div class="gem-item" onclick="buy('172 DM')"><b>172 DM +16</b><div class="harga">Rp 40.000</div></div>
+<div class="gem-item" onclick="buy('257 DM')"><b>257 DM</b><div class="harga">Rp 60.000</div></div>
+<div class="gem-item" onclick="buy('344 DM')"><b>344 DM</b><div class="harga">Rp 80.000</div></div>
+<div class="gem-item" onclick="buy('429 DM')"><b>429 DM</b><div class="harga">Rp 100.000</div></div>
+<div class="gem-item" onclick="buy('514 DM')"><b>514 DM</b><div class="harga">Rp 120.000</div></div>
+<div class="gem-item" onclick="buy('10000 DM')"><b>10000 DM</b><div class="harga">Rp 2.150.000</div></div>
+</div>
 </div>
 
-<!-- PRODUK -->
-<div class="max-w-6xl mx-auto px-4 pb-20">
-  <h3 class="text-2xl font-black mb-6">🔥 PRODUK TERLARIS</h3>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-    <!-- ML -->
-    <div class="bg-gradient-to-br from-zinc-900 to-zinc-800 border border-white/10 rounded-3xl p-5 hover:border-purple-500 transition">
-      <div class="flex justify-between mb-4"><span class="bg-blue-600 text-xs px-3 py-1 rounded-full">MOBILE LEGENDS</span><span class="text-green-400 text-xs">● Stok Ready</span></div>
-      <h4 class="font-bold text-xl mb-2">Diamond MLBB</h4>
-      <p class="text-gray-400 text-sm mb-4">86 💎 = 20.000<br>172 💎 = 39.000<br>257 💎 = 58.000<br>344 💎 = 78.000</p>
-      <a href="https://wa.me/628xxxx?text=Halo%20Gojo%20Pay%20mau%20order%20Diamond%20ML" class="block bg-white text-black text-center py-3 rounded-full font-black">ORDER SEKARANG</a>
-    </div>
-    <!-- FF -->
-    <div class="bg-gradient-to-br from-zinc-900 to-zinc-800 border border-white/10 rounded-3xl p-5 hover:border-purple-500 transition">
-      <div class="flex justify-between mb-4"><span class="bg-red-600 text-xs px-3 py-1 rounded-full">FREE FIRE</span><span class="text-green-400 text-xs">● Stok Ready</span></div>
-      <h4 class="font-bold text-xl mb-2">Diamond FF</h4>
-      <p class="text-gray-400 text-sm mb-4">70 💎 = 10.000<br>140 💎 = 19.000<br>210 💎 = 28.000<br>355 💎 = 47.000</p>
-      <a href="https://wa.me/628xxxx?text=Halo%20Gojo%20Pay%20mau%20order%20Diamond%20FF" class="block bg-white text-black text-center py-3 rounded-full font-black">ORDER SEKARANG</a>
-    </div>
-    <!-- NOKOS -->
-    <div class="bg-gradient-to-br from-purple-900/50 to-zinc-900 border border-purple-500/50 rounded-3xl p-5 hover:border-purple-400 transition">
-      <div class="flex justify-between mb-4"><span class="bg-purple-600 text-xs px-3 py-1 rounded-full">BEST SELLER</span><span class="text-green-400 text-xs">● Stok Ready</span></div>
-      <h4 class="font-bold text-xl mb-2">NOKOS WA / TELE</h4>
-      <p class="text-gray-400 text-sm mb-4">NOKOS Indo = 5.000<br>NOKOS Luar = 8.000<br>Akun Premium<br>Siap Pakai</p>
-      <a href="https://wa.me/628xxxx?text=Halo%20Gojo%20Pay%20mau%20order%20NOKOS" class="block bg-gradient-to-r from-purple-600 to-blue-600 text-white text-center py-3 rounded-full font-black">ORDER SEKARANG</a>
-    </div>
-  </div>
+<div class="step">
+<div class="step-title"><span>3</span> Paket & Jasa Lain</div>
+<div class="gem-grid">
+<div class="gem-item" onclick="buy('Weekly Pass 28K')"><b>Weekly Pass</b><div class="harga">Rp 28.000</div></div>
+<div class="gem-item" onclick="buy('Twilight Pass 140K')"><b>Twilight Pass</b><div class="harga">Rp 140.000</div></div>
+<div class="gem-item" onclick="buy('Starlight 145K')"><b>Starlight</b><div class="harga">Rp 145.000</div></div>
+<div class="gem-item" onclick="buy('Starlight Plus 320K')"><b>Starlight Plus</b><div class="harga">Rp 320.000</div></div>
+<div class="gem-item" style="border:2px solid #FF6B6B;background:#fff0f0" onclick="buy('JASA DAPREM 70K')"><div class="badge-mini" style="background:#FF6B6B">NEW</div><b>🔥 JASA DAPREM</b><div style="font-size:8px">Premium & Skin</div><div class="harga" style="color:#FF3B30">Rp 70.000</div></div>
+<div class="gem-item" onclick="buy('Nokos WA 5K')"><b>Nokos WA</b><div class="harga">Rp 5.000</div></div>
+<div class="gem-item" onclick="buy('Premium App 70K')"><b>Premium 70K</b><div class="harga">Rp 70.000</div></div>
+</div>
 </div>
 
-<!-- FOOTER -->
-<div class="border-t border-white/10 py-6 text-center text-gray-500 text-sm">
-  <p>© 2025 GOJO PAY - gojo-pay.github.io</p>
-  <p class="mt-1">Hubungi WA: 08xx-xxxx-xxxx | Proses 24 Jam</p>
+<div class="step" style="border:2px solid #7C3AED">
+<div class="step-title"><span>?</span> MENU BANTUAN & CARA BELI</div>
+<div class="faq">
+<b>1. Cara Beli Gimana Bos?</b><p>Isi ID + Server di Step 1 > Pilih Diamond > Klik Beli > Scan QRIS > Kirim Bukti ke WA</p>
+<b>2. Berapa Lama Masuk?</b><p>1-10 Menit setelah transfer. Kalo lewat 30 menit belum masuk, langsung WA 08889943510</p>
+<b>3. Jasa Daprem Itu Apa?</b><p>Jasa Dapatkan Premium / Skin MLBB. Lu mau skin apa, kita beliin + mainin sampe dapet. Harga 70K (belum termasuk DM)</p>
+<b>4. Aman Gak?</b><p>100% Aman Legal. Top up via API Resmi Moonton. ID Aman No Ban.</p>
+<b>5. Gak Tau ID / Server?</b><p>Klik CEK ID di atas udah ada tutorialnya. Atau langsung WA aja, kita bantu cariin.</p>
+<button class="btn btn-green" onclick="window.open('https://wa.me/6288889943510?text=Halo%20min%20mau%20tanya%20cara%20beli','_blank')">💬 TANYA CS VIA WA</button>
 </div>
+</div>
+
+<div style="text-align:center;padding:12px;font-size:10px;opacity:.5">© GOJO PAY TOKO Man V2 - QRIS ID1025432395271<br>WA 08889943510</div>
+
+<div id="qrModal" onclick="this.classList.remove('active')"><div class="qrbox" onclick="event.stopPropagation()" style="color:#000"><b>TOKO Man V2<br>ID1025432395271</b><img src="./qris.jpg" onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=ID1025432395271'"><p id="qrTitle" style="font-weight:800;margin:6px 0"></p><p id="qrIdInfo" style="font-size:11px;opacity:.7"></p><div style="background:#f0fdf4;padding:10px;border-radius:8px;margin:8px 0"><div style="font-size:11px">Total Bayar:</div><div id="qrPrice" style="font-weight:800;font-size:20px;color:#00C853">Rp 0</div></div><button class="btn btn-green" onclick="wa()">BAYAR WA 08889943510</button><button class="btn" style="background:#eee;color:#111" onclick="document.getElementById('qrModal').classList.remove('active')">Tutup</button></div></div>
+
+<script>
+let curOrder='',curId='',curPrice=0
+function cekId(){let id=document.getElementById('mlbbId').value;let sv=document.getElementById('serverId').value;if(!id){alert('Isi ID!');return}curId=id+' '+sv;let h=document.getElementById('hasilCek');h.style.display='block';h.innerText='✅ ID '+id+' Server '+sv+' Valid!'}
+function hitung(){let g=parseInt(document.getElementById('customGem').value)||0;curPrice=g*250;document.getElementById('priceDisplay').innerText='Rp '+curPrice.toLocaleString('id-ID')}
+function buyCustom(){let id=document.getElementById('mlbbId').value;if(!id){alert('Isi ID dulu!');return}let gem=document.getElementById('customGem').value;if(!gem||gem<1){alert('Ketik jumlah diamond!');return}curOrder=gem+' DM CUSTOM BEBAS';curId=id+' '+document.getElementById('serverId').value;document.getElementById('qrTitle').innerText=gem+' Diamond BEBAS';document.getElementById('qrIdInfo').innerText='ID: '+curId;document.getElementById('qrPrice').innerText='Rp '+curPrice.toLocaleString('id-ID');document.getElementById('qrModal').classList.add('active')}
+function buy(p){let id=document.getElementById('mlbbId').value;if(!id&&!p.includes('Nokos')&&!p.includes('DAPREM')&&!p.includes('Premium')){alert('Isi ID di Step 1 dulu bos!');return}curOrder=p;curId=id+' '+document.getElementById('serverId').value;let pr={'5 DM':2000,'11 DM':4000,'14 DM':5000,'86 DM':20000,'172 DM':40000,'257 DM':60000,'344 DM':80000,'429 DM':100000,'514 DM':120000,'10000 DM':2150000,'Weekly Pass 28K':28000,'Twilight Pass 140K':140000,'Starlight 145K':145000,'Starlight Plus 320K':320000,'JASA DAPREM 70K':70000,'Nokos WA 5K':5000,'Premium App 70K':70000};curPrice=pr[p]||0;document.getElementById('qrTitle').innerText=p;document.getElementById('qrIdInfo').innerText='ID: '+curId;document.getElementById('qrPrice').innerText='Rp '+curPrice.toLocaleString('id-ID');document.getElementById('qrModal').classList.add('active')}
+function wa(){window.open('https://wa.me/6288889943510?text='+encodeURIComponent('Halo GOJO PAY\nID:'+curId+'\nOrder:'+curOrder+'\nTotal:Rp '+curPrice.toLocaleString('id-ID')+'\nQRIS ID1025432395271'),'_blank')}
+</script>
 </body>
-                                                                                                                                                   </html>
+  </html>                                                                                                                                  </html>
