@@ -1,103 +1,136 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GOJO PAY - Topup Sultan No Mute</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<style>
-@keyframes glow{0%,100%{box-shadow:0 0 20px #9333ea}50%{box-shadow:0 0 40px #ec4899}}
-.glow{animation:glow 2s infinite}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#09090b">
+  <title>GOJO PAY — Topup Sultan Premium</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] } } }
+    }
+  </script>
+  <style>
+    @keyframes glow { 0%,100% { box-shadow: 0 0 18px rgba(147,51,234,.35) } 50% { box-shadow: 0 0 38px rgba(236,72,153,.65) } }
+    @keyframes float { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-8px) } }
+    .glow { animation: glow 2.4s ease-in-out infinite }
+    .float { animation: float 4s ease-in-out infinite }
+    .glass { background: rgba(24,24,27,.72); backdrop-filter: blur(18px); border: 1px solid rgba(168,85,247,.22) }
+    .gradient-text { background: linear-gradient(90deg,#c084fc,#f472b6,#a78bfa); -webkit-background-clip:text; background-clip:text; color:transparent }
+    .product-card { transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease }
+    .product-card:hover { transform: translateY(-4px); border-color: rgba(192,132,252,.8); box-shadow: 0 12px 30px rgba(88,28,135,.25) }
+    .no-scrollbar::-webkit-scrollbar { display:none }
+    .no-scrollbar { -ms-overflow-style:none; scrollbar-width:none }
+  </style>
 </head>
-<body class="bg-black text-white">
+<body class="min-h-screen bg-[#07070a] text-white selection:bg-fuchsia-500/40">
 
-<!-- LOADING SCREEN V33.3 - NO MUTE + MUSIK TIKTOK -->
-<div id="loading" class="fixed inset-0 bg-black flex flex-col items-center justify-center z-[9999]">
-  <audio id="loadingAudio" src="https://cdn.pixabay.com/audio/2022/10/30/audio_8f7e3c7b7d.mp3" loop preload="auto"></audio>
-  <h1 class="text-6xl font-black bg-gradient-to-r from-purple-600 via-pink-500 to-purple-600 bg-clip-text text-transparent animate-pulse">⚡ GOJO PAY</h1>
-  <div class="w-16 h-16 border-4 border-purple-600 border-t-pink-500 rounded-full animate-spin mt-8 shadow-[0_0_30px_purple]"></div>
-  <p class="text-purple-300 tracking-[0.3em] mt-4 animate-pulse text-sm">MEMUAT SISTEM SULTAN...</p>
-  <!-- TIDAK ADA BUTTON MUTE DISINI! BERSIH! -->
-</div>
-
-<!-- APP -->
-<div id="app" class="hidden">
-<nav class="flex justify-between items-center p-4 border-b border-purple-900/50 sticky top-0 bg-black/90 backdrop-blur z-50">
-  <h1 class="text-2xl font-black text-purple-500">⚡ GOJO PAY</h1>
-  <div class="flex gap-2">
-    <button onclick="showPage('lacak')" class="bg-purple-600 px-4 py-2 rounded-xl shadow-[0_0_15px_purple] text-sm font-bold">🔍 LACAK PESANAN <span class="bg-pink-500 text-xs px-2 py-0.5 rounded-full animate-pulse ml-1">BARU</span></button>
-  </div>
-</nav>
-
-<div id="homePage">
-  <div class="p-4">
-    <div class="flex justify-between items-center">
-      <h2 class="font-bold">Kategori Game</h2>
-      <button onclick="showPage('kategori')" class="text-purple-400 text-sm">Lihat Semua ></button>
+  <!-- Loading screen: audio tidak memiliki tombol mute. Autoplay tetap mengikuti kebijakan browser. -->
+  <div id="loading" class="fixed inset-0 z-[9999] flex flex-col items-center justify-center overflow-hidden bg-[#050507]">
+    <div class="absolute -left-24 top-10 h-72 w-72 rounded-full bg-purple-700/20 blur-3xl"></div>
+    <div class="absolute -right-20 bottom-0 h-80 w-80 rounded-full bg-pink-600/20 blur-3xl"></div>
+    <div class="relative text-center">
+      <div class="float mb-5 text-6xl">⚡</div>
+      <h1 class="gradient-text text-5xl font-black tracking-tight sm:text-7xl">GOJO PAY</h1>
+      <div class="mx-auto mt-8 h-14 w-14 animate-spin rounded-full border-4 border-purple-900 border-t-fuchsia-400 shadow-[0_0_35px_#9333ea]"></div>
+      <p class="mt-5 text-xs font-bold tracking-[.35em] text-purple-300">MEMUAT SISTEM SULTAN...</p>
+      <p id="loadingStatus" class="mt-2 text-xs text-zinc-500">Menyiapkan 100 produk</p>
     </div>
-    <div class="grid grid-cols-4 gap-3 mt-4">
-      <div class="bg-zinc-900 border border-purple-600/30 p-3 rounded-2xl text-center text-sm glow">FF<br><span class="text-xs text-zinc-400">16 Produk</span></div>
-      <div class="bg-zinc-900 border border-purple-600/30 p-3 rounded-2xl text-center text-sm glow">MLBB<br><span class="text-xs text-zinc-400">19 Produk</span></div>
-      <div class="bg-zinc-900 border border-purple-600/30 p-3 rounded-2xl text-center text-sm glow">Roblox<br><span class="text-xs text-zinc-400">20 Produk</span></div>
-      <div class="bg-zinc-900 border border-purple-600/30 p-3 rounded-2xl text-center text-sm glow">PUBG<br><span class="text-xs text-zinc-400">12 Produk</span></div>
-    </div>
+    <audio id="loadingAudio" src="https://cdn.pixabay.com/audio/2022/10/30/audio_8f7e3c7b7d.mp3" loop preload="auto"></audio>
   </div>
-  <div class="p-4">
-    <h2 class="font-bold">🔥 100 Produk Sultan Ready</h2>
-    <div class="grid grid-cols-2 gap-3 mt-3 text-sm">
-      <div class="bg-zinc-900 p-3 rounded-xl border border-purple-900">FF 16 Diamond</div>
-      <div class="bg-zinc-900 p-3 rounded-xl border border-purple-900">MLBB 19 Diamond</div>
-      <div class="bg-zinc-900 p-3 rounded-xl border border-purple-900">Roblox 20 Robux</div>
-      <div class="bg-zinc-900 p-3 rounded-xl border border-purple-900">PUBG 12 UC</div>
-    </div>
+
+  <div id="app" class="hidden min-h-screen">
+    <header class="sticky top-0 z-50 border-b border-purple-900/40 bg-black/80 backdrop-blur-xl">
+      <nav class="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-4 lg:px-8">
+        <button onclick="showPage('home')" class="flex items-center gap-2 text-left">
+          <span class="text-2xl">⚡</span><span class="text-xl font-black tracking-tight sm:text-2xl">GOJO <span class="text-purple-400">PAY</span></span>
+        </button>
+        <div class="flex items-center gap-2">
+          <span class="hidden rounded-full border border-green-500/30 bg-green-500/10 px-3 py-2 text-xs font-bold text-green-400 sm:inline-flex">● ONLINE</span>
+          <button onclick="showPage('track')" class="rounded-xl bg-yellow-400 px-3 py-2 text-xs font-black text-black shadow-[0_0_18px_rgba(250,204,21,.25)] transition hover:bg-yellow-300 sm:px-4 sm:text-sm">🔍 LACAK PESANAN</button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="mx-auto max-w-7xl px-4 pb-16 pt-6 lg:px-8">
+      <section id="homePage">
+        <div class="glass relative mb-8 overflow-hidden rounded-3xl p-6 sm:p-10">
+          <div class="absolute -right-16 -top-20 h-64 w-64 rounded-full bg-fuchsia-600/20 blur-3xl"></div>
+          <div class="relative grid items-center gap-8 lg:grid-cols-[1.2fr_.8fr]">
+            <div>
+              <span class="inline-flex rounded-full border border-purple-400/30 bg-purple-500/10 px-3 py-1 text-xs font-bold text-purple-300">TOPUP CEPAT • AMAN • 24/7</span>
+              <h1 class="mt-4 max-w-2xl text-4xl font-black leading-tight sm:text-6xl">Topup Sultan,<br><span class="gradient-text">Harga Bersahabat.</span></h1>
+              <p class="mt-4 max-w-xl text-sm leading-6 text-zinc-400 sm:text-base">100 produk game siap dipilih. Isi data topup, pilih produk, lalu kirim detail pesanan langsung ke WhatsApp CS.</p>
+              <div class="mt-6 flex flex-wrap gap-3">
+                <button onclick="document.getElementById('topupSection').scrollIntoView({behavior:'smooth'})" class="glow rounded-xl bg-purple-600 px-5 py-3 text-sm font-black transition hover:bg-purple-500">⚡ MULAI TOPUP</button>
+                <button onclick="showPage('track')" class="rounded-xl border border-yellow-400/50 bg-yellow-400/10 px-5 py-3 text-sm font-black text-yellow-300 transition hover:bg-yellow-400 hover:text-black">LACAK STATUS</button>
+              </div>
+              <div class="mt-7 flex flex-wrap gap-5 text-xs text-zinc-400"><span>✓ Proses 1–10 menit</span><span>✓ CS responsif</span><span>✓ Pembayaran QRIS</span></div>
+            </div>
+            <div class="hidden justify-center lg:flex"><div class="float text-[10rem] drop-shadow-[0_0_35px_rgba(168,85,247,.8)]">💎</div></div>
+          </div>
+        </div>
+
+        <section id="topupSection" class="mb-10 grid gap-6 lg:grid-cols-[.85fr_1.15fr]">
+          <div class="glass rounded-3xl p-5 sm:p-7">
+            <div class="mb-5"><p class="text-xs font-bold uppercase tracking-widest text-purple-400">Pesan sekarang</p><h2 class="mt-1 text-2xl font-black">Form Topup</h2></div>
+            <div class="space-y-4">
+              <label class="block text-sm font-bold text-zinc-300">Pilih Game<select id="game" class="mt-2 w-full rounded-xl border border-purple-900 bg-zinc-950 p-3 outline-none focus:border-purple-400"><option>Mobile Legends</option><option>Free Fire</option><option>Roblox</option><option>PUBG Mobile</option><option>CODM</option><option>Clash of Clans</option><option>Stumble Guys</option><option>Sausage Man</option></select></label>
+              <label class="block text-sm font-bold text-zinc-300">ID Game<input id="gameId" class="mt-2 w-full rounded-xl border border-purple-900 bg-zinc-950 p-3 outline-none placeholder:text-zinc-600 focus:border-purple-400" placeholder="Contoh: 12345678" inputmode="numeric"></label>
+              <label class="block text-sm font-bold text-zinc-300">Server / Zone <span class="font-normal text-zinc-500">(opsional)</span><input id="server" class="mt-2 w-full rounded-xl border border-purple-900 bg-zinc-950 p-3 outline-none placeholder:text-zinc-600 focus:border-purple-400" placeholder="Contoh: 1234"></label>
+              <label class="block text-sm font-bold text-zinc-300">Produk pilihan<select id="productSelect" class="mt-2 w-full rounded-xl border border-purple-900 bg-zinc-950 p-3 outline-none focus:border-purple-400"></select></label>
+              <button onclick="sendOrder()" class="w-full rounded-xl bg-green-500 p-4 font-black text-black shadow-[0_0_25px_rgba(34,197,94,.25)] transition hover:bg-green-400">💬 PESAN VIA WHATSAPP</button>
+              <p class="text-center text-xs text-zinc-500">Setelah klik, detail order akan dikirim ke CS Gojo Pay.</p>
+            </div>
+          </div>
+          <div class="glass rounded-3xl p-5 sm:p-7">
+            <div class="flex flex-wrap items-end justify-between gap-3"><div><p class="text-xs font-bold uppercase tracking-widest text-pink-400">Ready stock</p><h2 class="mt-1 text-2xl font-black">🔥 100 Produk Sultan</h2></div><input id="search" oninput="renderProducts()" class="w-full rounded-xl border border-purple-900 bg-zinc-950 px-3 py-2 text-sm outline-none focus:border-purple-400 sm:w-48" placeholder="Cari produk..."></div>
+            <div id="products" class="mt-5 grid max-h-[650px] grid-cols-2 gap-3 overflow-y-auto pr-1 sm:grid-cols-3 no-scrollbar"></div>
+          </div>
+        </section>
+
+        <section class="mb-10"><div class="mb-4 flex items-end justify-between"><div><p class="text-xs font-bold uppercase tracking-widest text-purple-400">Kategori favorit</p><h2 class="text-2xl font-black">Pilih Game Kamu</h2></div><span class="text-sm text-zinc-500">100 produk</span></div><div class="grid grid-cols-2 gap-3 sm:grid-cols-4"><button onclick="filterGame('Free Fire')" class="glass rounded-2xl p-5 text-left transition hover:border-purple-400"><span class="text-3xl">🔥</span><b class="mt-3 block">Free Fire</b><small class="text-zinc-500">16 produk</small></button><button onclick="filterGame('Mobile Legends')" class="glass rounded-2xl p-5 text-left transition hover:border-purple-400"><span class="text-3xl">💎</span><b class="mt-3 block">MLBB</b><small class="text-zinc-500">19 produk</small></button><button onclick="filterGame('Roblox')" class="glass rounded-2xl p-5 text-left transition hover:border-purple-400"><span class="text-3xl">🧱</span><b class="mt-3 block">Roblox</b><small class="text-zinc-500">20 produk</small></button><button onclick="filterGame('PUBG Mobile')" class="glass rounded-2xl p-5 text-left transition hover:border-purple-400"><span class="text-3xl">🎯</span><b class="mt-3 block">PUBG</b><small class="text-zinc-500">12 produk</small></button></div></section>
+      </section>
+
+      <section id="trackPage" class="hidden mx-auto max-w-2xl">
+        <button onclick="showPage('home')" class="mb-5 text-sm text-purple-300">← Kembali ke beranda</button>
+        <div class="glass rounded-3xl p-6 sm:p-8"><div class="text-center"><div class="text-4xl">📦</div><h2 class="mt-3 text-3xl font-black">Lacak Pesanan</h2><p class="mt-2 text-sm text-zinc-400">Masukkan nomor WhatsApp atau ID game yang digunakan saat order.</p></div><div class="mt-6 flex gap-2"><input id="trackInput" class="min-w-0 flex-1 rounded-xl border border-purple-900 bg-zinc-950 p-3 outline-none focus:border-purple-400" placeholder="No WA / ID Game"><button onclick="trackOrder()" class="rounded-xl bg-yellow-400 px-4 font-black text-black hover:bg-yellow-300">LACAK</button></div><div id="trackResult" class="mt-6 hidden space-y-3"></div></div>
+        <div class="mt-5 grid gap-3 sm:grid-cols-2"><div class="rounded-2xl border-l-4 border-yellow-400 bg-yellow-400/10 p-4"><b class="text-yellow-300">🟡 PENDING</b><p class="mt-2 text-sm text-zinc-300">Menunggu pembayaran atau verifikasi admin.</p></div><div class="rounded-2xl border-l-4 border-green-500 bg-green-500/10 p-4"><b class="text-green-400">🟢 SUKSES</b><p class="mt-2 text-sm text-zinc-300">Topup berhasil dan item sudah masuk.</p></div></div>
+      </section>
+    </main>
+    <footer class="border-t border-purple-900/40 px-4 py-8 text-center text-xs text-zinc-500">© 2026 GOJO PAY • Layanan topup game premium • CS: 08889943510</footer>
   </div>
-</div>
 
-<div id="kategoriPage" class="hidden p-4">
-  <h2 class="text-xl font-bold"><span onclick="showPage('home')" class="cursor-pointer"><</span> Lihat Semua Kategori Game</h2>
-  <input placeholder="Cari game..." class="w-full mt-4 p-3 bg-zinc-900 rounded-xl border border-purple-600 outline-none">
-  <div class="grid grid-cols-2 gap-3 mt-4">
-    <div class="bg-zinc-900 border border-purple-600 p-4 rounded-2xl text-center">Free Fire 16</div>
-    <div class="bg-zinc-900 border border-purple-600 p-4 rounded-2xl text-center">MLBB 19</div>
-    <div class="bg-zinc-900 border border-purple-600 p-4 rounded-2xl text-center">Roblox 20</div>
-    <div class="bg-zinc-900 border border-purple-600 p-4 rounded-2xl text-center">PUBG 12</div>
-    <div class="bg-zinc-900 border border-purple-600 p-4 rounded-2xl text-center">CODM 10</div>
-    <div class="bg-zinc-900 border border-purple-600 p-4 rounded-2xl text-center">COC 8</div>
-    <div class="bg-zinc-900 border border-purple-600 p-4 rounded-2xl text-center">Stumble 8</div>
-    <div class="bg-zinc-900 border border-purple-600 p-4 rounded-2xl text-center">Sausage 7</div>
-  </div>
-</div>
+  <script>
+    const WA_NUMBER = '6288889943510';
+    const games = ['Mobile Legends','Free Fire','Roblox','PUBG Mobile','CODM','Clash of Clans','Stumble Guys','Sausage Man'];
+    const amounts = ['5 Diamond','12 Diamond','28 Diamond','50 Diamond','86 Diamond','100 Diamond','172 Diamond','257 Diamond','344 Diamond','429 Diamond','514 Diamond','720 Diamond','1000 Diamond'];
+    const products = Array.from({length:100}, (_, i) => ({ id:i+1, game:games[i % games.length], name: amounts[i % amounts.length], price: (2000 + ((i % 13) * 3000) + Math.floor(i / 13) * 5000) }));
+    let selectedProduct = products[0];
 
-<div id="lacakPage" class="hidden p-4 max-w-md mx-auto">
-  <h2 class="text-xl font-bold text-center">Lacak Pesanan Gojo Pay</h2>
-  <input placeholder="No WA / ID Game" class="w-full mt-6 p-3 bg-zinc-900 rounded-xl border border-purple-600 outline-none">
-  <button class="w-full mt-4 bg-purple-600 p-3 rounded-xl shadow-[0_0_20px_purple] font-bold">LACAK SEKARANG</button>
-  <div class="mt-6 space-y-3">
-    <div class="bg-zinc-900 p-4 rounded-xl border-l-4 border-yellow-500"><span class="bg-yellow-500 text-black text-xs px-2 py-1 rounded font-bold">PENDING KUNING</span><p class="text-sm mt-2 text-yellow-300">⚠️ Menunggu Pembayaran</p></div>
-    <div class="bg-zinc-900 p-4 rounded-xl border-l-4 border-green-500"><span class="bg-green-500 text-black text-xs px-2 py-1 rounded font-bold">SUKSES HIJAU</span><p class="text-sm mt-2 text-green-300">✅ Topup Berhasil - Diamond Masuk!</p></div>
-  </div>
-</div>
-</div>
+    function rupiah(n){ return 'Rp ' + n.toLocaleString('id-ID'); }
+    function renderProducts(){
+      const query = document.getElementById('search').value.toLowerCase();
+      const list = products.filter(p => `${p.game} ${p.name}`.toLowerCase().includes(query));
+      document.getElementById('products').innerHTML = list.map(p => `<button onclick="selectProduct(${p.id})" class="product-card rounded-2xl border border-purple-900/70 bg-zinc-950/70 p-3 text-left"><span class="text-[10px] font-bold uppercase text-purple-400">${p.game}</span><b class="mt-2 block text-sm">${p.name}</b><span class="mt-2 block text-xs font-black text-green-400">${rupiah(p.price)}</span></button>`).join('') || '<p class="col-span-full py-10 text-center text-sm text-zinc-500">Produk tidak ditemukan.</p>';
+    }
+    function selectProduct(id){ selectedProduct = products.find(p => p.id === id); document.getElementById('productSelect').value = String(id); document.getElementById('topupSection').scrollIntoView({behavior:'smooth'}); }
+    function populateSelect(){ document.getElementById('productSelect').innerHTML = products.map(p => `<option value="${p.id}">${p.game} — ${p.name} (${rupiah(p.price)})</option>`).join(''); }
+    function filterGame(game){ document.getElementById('search').value = game; renderProducts(); document.getElementById('topupSection').scrollIntoView({behavior:'smooth'}); }
+    function sendOrder(){
+      const game = document.getElementById('game').value, id = document.getElementById('gameId').value.trim(), server = document.getElementById('server').value.trim();
+      selectedProduct = products.find(p => p.id === Number(document.getElementById('productSelect').value)) || selectedProduct;
+      if(!id){ alert('Isi ID game terlebih dahulu.'); document.getElementById('gameId').focus(); return; }
+      const text = `Halo GOJO PAY, saya mau order.%0A%0AGame: ${game}%0AID: ${id}%0AServer: ${server || '-'}%0AProduk: ${selectedProduct.name}%0ATotal: ${rupiah(selectedProduct.price)}%0A%0AMohon diproses ya admin.`;
+      window.open(`https://wa.me/${WA_NUMBER}?text=${text}`, '_blank');
+    }
+    function showPage(page){ document.getElementById('homePage').classList.toggle('hidden', page !== 'home'); document.getElementById('trackPage').classList.toggle('hidden', page !== 'track'); window.scrollTo({top:0,behavior:'smooth'}); }
+    function trackOrder(){ const value=document.getElementById('trackInput').value.trim(); const result=document.getElementById('trackResult'); if(!value){ alert('Masukkan nomor WA atau ID game.'); return; } result.classList.remove('hidden'); result.innerHTML = `<div class="rounded-2xl border-l-4 border-yellow-400 bg-yellow-400/10 p-4"><b class="text-yellow-300">🟡 PESANAN DITEMUKAN — PENDING</b><p class="mt-2 text-sm text-zinc-300">Order ${value} sedang menunggu verifikasi pembayaran admin.</p></div><div class="rounded-2xl border-l-4 border-green-500 bg-green-500/10 p-4"><b class="text-green-400">🟢 STATUS LAYANAN AKTIF</b><p class="mt-2 text-sm text-zinc-300">Jika sudah transfer, kirim bukti pembayaran ke WhatsApp CS.</p></div>`; }
 
-<script>
-// LOADING LOGIC - NO MUTE
-const audio = document.getElementById('loadingAudio');
-audio.volume = 0.4;
-audio.play().catch(()=>{});
-setTimeout(()=>{
-  document.getElementById('loading').style.display='none';
-  document.getElementById('app').classList.remove('hidden');
-  audio.pause();
-}, 2500);
-
-function showPage(p){
-  document.getElementById('homePage').classList.add('hidden');
-  document.getElementById('kategoriPage').classList.add('hidden');
-  document.getElementById('lacakPage').classList.add('hidden');
-  document.getElementById(p+'Page').classList.remove('hidden');
-  window.scrollTo(0,0);
-}
-</script>
+    populateSelect(); renderProducts();
+    const audio = document.getElementById('loadingAudio'); audio.volume = 0.4; audio.play().catch(() => { document.getElementById('loadingStatus').textContent = 'Klik halaman untuk mengaktifkan musik'; });
+    setTimeout(() => { document.getElementById('loading').remove(); document.getElementById('app').classList.remove('hidden'); audio.pause(); }, 2500);
+  </script>
 </body>
 </html>
